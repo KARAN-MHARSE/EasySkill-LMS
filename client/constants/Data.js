@@ -1,0 +1,32 @@
+export const SidebarLinks = [
+    {
+        name:"Dashboard",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+    {
+        name:"Cources",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+    {
+        name:"Messages",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+    {
+        name:"Webinars",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+    {
+        name:"Calender",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+    {
+        name:"Store",
+        icon:"<IoHomeOutline/>",
+        url:"/"
+    },
+]
