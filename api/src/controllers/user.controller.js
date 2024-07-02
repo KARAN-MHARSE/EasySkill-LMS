@@ -4,9 +4,9 @@ const {asyncHandler} = require('../utils/asyncHandler')
 
 
 const register = asyncHandler(async(req,res)=>{
-    const {userName,email,fullName,password} = req.body;
+    const {email,firstName,lastName,password} = req.body;
 
-    if([userName,email,fullName,password].some((fields)=> fields?.trim() === "")){
+    if([email,firstName,lastName,password].some((fields)=> fields?.trim() === "")){
         throw new ApiError(400, "All fields are required")
     }
 
@@ -15,7 +15,7 @@ const register = asyncHandler(async(req,res)=>{
         throw new ApiError(400,"User already registered")
     }
     const user = await User.create({
-        userName,email,fullName,password
+        email,firstName,lastName,password
     })
 
     const succesFullyRegistedUser = await User.findById(user._id).select("-password -refreshToken")
@@ -30,12 +30,12 @@ const register = asyncHandler(async(req,res)=>{
 })
 
 const login = asyncHandler(async(req,res)=>{
-    const {email,userName,password} = req.body;
+    const {email,password} = req.body;
 
-    if((!email && !userName) || !password){
+    if(!email  || !password){
         throw new ApiError(400, "All fields are required");
     }
-    const user = await User.findOne({$or:[{userName},{email}]});
+    const user = await User.findOne({email});
     if(!user){
         throw new ApiError(500,"User not found");
     }
