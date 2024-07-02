@@ -9,10 +9,13 @@ import { MdOutlinePayment, MdSettings } from "react-icons/md";
 import { IoGiftOutline } from "react-icons/io5";
 import { MdLogout } from "react-icons/md";
 import { useState } from "react";
+import {useSelector} from 'react-redux'
 
 const Navbar = () => {
   const location = useLocation();
   const [popUp,setPopUp] = useState(false)
+
+  const currentUser = useSelector((state)=> state.curretUser)
 
   return (
     <div className={`flex justify-between py-5 px-5 ${(location.pathname =="/sign-in" || location.pathname=="/sign-up") && "hidden"}`}>
@@ -27,12 +30,12 @@ const Navbar = () => {
           <IoMdNotificationsOutline/>
         </div>
         {/* Login or user */}  
-        {/* <Link to='sign-in'>
-          <div className="flex items-center gap-1 px-4 py-1 border-2 rounded-lg border-primaryBlue text-lg">
+        <Link to='sign-in'>
+          <div className={`flex items-center gap-1 px-4 py-1 border-2 rounded-lg border-primaryBlue text-lg ${currentUser!=null && 'hidden' }`}>
             <p>Login</p>
           </div>
-        </Link> */}      
-        <div onClick={()=>setPopUp(!popUp)} className="flex flex-col  px-2 cursor-pointer  border-2 rounded-lg border-primaryBlue text-lg">
+        </Link>     
+        <div onClick={()=>setPopUp(!popUp)} className={`flex flex-col  px-2 cursor-pointer  border-2 rounded-lg border-primaryBlue text-lg ${currentUser==null  && 'hidden'}`}>
           <div className="flex items-center  gap-1  ">
             <RxAvatar/>
             <p>Aditya Pashte</p>
