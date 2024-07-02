@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 const userSchema = new mongoose.Schema(
     {
-        username: {
+        userName: {
             type: String,
             required: true,
             unique: true,
@@ -27,7 +27,7 @@ const userSchema = new mongoose.Schema(
         },
         avatar: {
             type: String, // cloudinary url
-            required: true,
+            required: false,
         },
         watchHistory: [
             {
