@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import SideBar from './components/SideBar';
 import Navbar from './components/Navbar';
+import TeachHome from './pages-teach/TeachHome';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path='/store' element={<Store />} />
               <Route path='/sign-in' element={<Login />} />
               <Route path='/sign-up' element={<Register />} />
+              <Route path="/teach/home" element={<TeachHome/>} />
             </Routes>
           </div>
         </div>

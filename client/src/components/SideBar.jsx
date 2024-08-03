@@ -15,7 +15,7 @@ const SideBar = () => {
   console.log(location.pathname)
   const [activeState,setActiveSet] = useState('Dashboard')
   return (
-    <div className={`w-full h-screen bg-primaryBlack p-5 font-openSans text-white max-w-max ${(location.pathname =="/sign-in" || location.pathname=="/sign-up") && "hidden"}`}>
+    <div className={`w-full h-screen bg-primaryBlack p-5 font-openSans text-white max-w-max ${(location.pathname =="/sign-in" || location.pathname=="/sign-up") && "hidden"} ${location.pathname.startsWith("/teach") && 'hidden'}`}>
       <h1 className='text-2xl md:text-3xl font-logo font-bold'><span className='text-primaryBlue'>Easy</span>Skill</h1>
       <p className='text-sm md:text-[16px] mt-8 mb-4 font-semibold'>MAIN</p>
       {/* routes div */}
