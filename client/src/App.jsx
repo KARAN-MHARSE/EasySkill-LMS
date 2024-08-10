@@ -10,6 +10,7 @@ import Register from './pages/Register';
 import SideBar from './components/SideBar';
 import Navbar from './components/Navbar';
 import TeachHome from './pages-teach/TeachHome';
+import Setting from './pages/Setting';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <div className='overflow-y-auto scrollbar-hidden flex-1' style={{ scrollbarWidth: 'none', /* Firefox */ WebkitScrollbar: 'display:none'}}>
             <Routes>
               <Route path='/' element={<DashBoard />} />
+              <Route path='/setting' element={<Setting/>} />
               <Route path='/cources' element={<Cources />} />
               <Route path='/messages' element={<Messages />} />
               <Route path='/webinars' element={<Webinar />} />

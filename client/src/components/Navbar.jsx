@@ -2,7 +2,7 @@ import { FaSearch } from "react-icons/fa";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { RxAvatar } from "react-icons/rx";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { IoSettingsOutline } from "react-icons/io5";
 import { TbCertificate } from "react-icons/tb";
 import { MdOutlinePayment, MdSettings } from "react-icons/md";
@@ -13,9 +13,18 @@ import {useSelector} from 'react-redux'
 
 const Navbar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [popUp,setPopUp] = useState(false)
 
   const currentUser = useSelector((state)=> state.curretUser)
+
+  const handleNavigation = (e)=>{
+    e.preventDefault();
+
+    setPopUp(false);
+    navigate(`/${e.target.id}`)
+  }
+
 
   return (
     <div className={`flex justify-between py-5 px-5 shadow-xl ${(location.pathname =="/sign-in" || location.pathname=="/sign-up") && "hidden"}`}>
@@ -45,12 +54,13 @@ const Navbar = () => {
             <RxAvatar/>
             <p>{currentUser!=null && currentUser.firstName+" "+currentUser.lastName}</p>
             <RiArrowDropDownLine size="35px"/>
-          </div>
-          {/* popup when click */}
-          <div className={!popUp && "hidden"}>
+          </div>          
+        </div>
+        {/* popup when click */}
+        <div className={`${!popUp && "hidden"} bg-primaryGrey px-3 absolute top-16 right-5 z-10 border-2 rounded-lg border-primaryBlue`}>
             <p className="text-sm text-zinc-500 underline decoration-[2px] underline-offset-4 mb-2">adityapashte@gmail.com</p>
             <div className="flex flex-col gap-2 px-2">
-              <p className="flex items-center gap-2 text-[16px] "><IoSettingsOutline/>Setting</p>
+              <p onClick={handleNavigation} id="setting" className="flex items-center gap-2 text-[16px] cursor-pointer "><IoSettingsOutline/>Setting</p>
               <p className="flex items-center gap-2 text-[16px] "><TbCertificate/>Certificates</p>
               <p className="flex items-center gap-2 text-[16px]"><MdOutlinePayment/>Payment</p>
               <p className="flex items-center gap-2 text-[16px]"><IoGiftOutline/>Request a friend</p>
@@ -58,7 +68,6 @@ const Navbar = () => {
               <p className="flex items-center my-3 gap-2 text-[16px] text-red-500"><MdLogout/>Log Out</p>
             </div>
           </div>
-        </div>
         
         
       </div>
